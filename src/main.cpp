@@ -14,8 +14,8 @@ void loop()
 {
   BmeRead();
   ReadTime();
-  PrintTime();            // only prints in setting SERIAL_DEBUG if true
-  BmePrint();             // only prints in setting SERIAL_DEBUG if true
+  PrintTime();            // only prints in setting SERIAL_DEBUG_USB if true
+  BmePrint();             // only prints in setting SERIAL_DEBUG_USB if true
   SdLog();
   delay(MS_TILE_NEXT_LOG);
 }

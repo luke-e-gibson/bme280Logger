@@ -1,69 +1,30 @@
 #include "sal.h"
 
-uRTCLib rtc(RTC_ADDR);
-char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+#include <helpers.h>
+
 Adafruit_BME280 bme;
-float Temp, Pres, Hum, Alt;
+uRTCLib rtc(RTC_ADDR);
+
+char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 uint8_t second, minute, hour, day, month, year;
 
+float Temp, Pres, Hum, Alt;
 int Trys = 0;
 
-void HLT()
-{
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(1000);
-  HLT();
 
-}
-void InitLed(void){
-  pinMode(LED_BUILTIN, OUTPUT);
-}
-void SerialInit(void)
-{
-  #ifdef SERIAL_DEBUG
-    Serial.begin(9600);
-  #endif
-}
-void PrintFloatln(float toPrint)
-{
-    #ifdef SERIAL_DEBUG
-        Serial.println(toPrint);
-    #endif
-}
-void PrintCharln(const char* toPrint)
-{
-    #ifdef SERIAL_DEBUG
-        Serial.println(toPrint);
-    #endif
-}
-void PrintChar(const char* toPrint)
-{
-    #ifdef SERIAL_DEBUG
-        Serial.print(toPrint);
-    #endif
-}
+
+
 void BmeInit()
 {
-    unsigned status;
-    status = bme.begin(BME_ADDR);
-
-    if(!status)
-    {
-      PrintCharln("Could not find valid BME280 Sensor");
-    }
+    
 }
 void BmeRead()
 {
-  Temp = bme.readTemperature();
-  Pres = bme.readPressure() / 100.0;
-  Hum = bme.readHumidity(); 
-  Alt = bme.readAltitude(SEALEVELPRESSURE_HPA);
+ 
 }
 void BmePrint()
 {
-  #ifdef SERIAL_DEBUG
+  #ifdef SERIAL_DEBUG_USB
       PrintChar("Temp: ");
       PrintFloatln(Temp);
       PrintChar("Hum: ");
@@ -77,6 +38,7 @@ void BmePrint()
 void SdInit()
 {
   PrintCharln("Init Sd card");
+ 
    if(!SD.begin(SD_CS_PIN))
    {
     PrintCharln("Could Not Init Sd Card");
@@ -134,7 +96,7 @@ void ReadTime(void)
 }
 void PrintTime(void)
 {
-  #ifdef SERIAL_DEBUG
+  #ifdef SERIAL_DEBUG_USB
   Serial.print("Current Date & Time: ");
   Serial.print(rtc.year());
   Serial.print('/');
