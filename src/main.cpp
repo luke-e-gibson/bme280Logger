@@ -1,22 +1,31 @@
-#include <settings.h>
-#include "sal/sal.h"
+#include <Arduino.h>
+#include <drivers/bme280Driver/bme280.h>
+#include <drivers/sdDriver/sdCard.h>
+#include <drivers/timeDriver/time.h>
+
+bme280 bme;
+sdCard sd;
+Time time;
 
 
 void setup() 
 {
-  InitLed();
-  SerialInit();
-  BmeInit();
-  InitTime();
-  SdInit();
+  
 }
+
+
 void loop() 
 {
-  BmeRead();
-  ReadTime();
-  PrintTime();            // only prints in setting SERIAL_DEBUG_USB if true
-  BmePrint();             // only prints in setting SERIAL_DEBUG_USB if true
-  SdLog();
-  delay(MS_TILE_NEXT_LOG);
+ bme.Update();
+ time.Update();
+
+  sd.sdLog(bme.readDataTemp(), bme.readDataPres(), bme.readDataHum(),
+      bme.readDataAlt(), time.getYear(), time.getMonth(), time.getDay(), time.getHours(), time.getMinutes(), time.getSeconds());
+
+
+ #ifdef SERIAL_DEBUG_USB
+  bme.DebugPrint();
+  time.DebugPrint();
+ #endif
 }
 

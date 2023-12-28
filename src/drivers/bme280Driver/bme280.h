@@ -11,11 +11,17 @@ private:
     Adafruit_BME280 bme;
 public:
     bme280();
-    void  Update();
-    float readDataTemp();
-    float readDataPres();
-    float readDataHum();
-    float readDataAlt();
+    void    Update();
+    float   readDataTemp();
+    float   readDataPres();
+    float   readDataHum();
+    float   readDataAlt();
+    
+    
+    #ifdef SERIAL_DEBUG_USB
+        void    DebugPrint();
+    #endif
+
 };
 
 
