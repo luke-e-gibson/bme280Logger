@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 
 void SerialInit(void);
 void PrintFloatln(float toPrint);
