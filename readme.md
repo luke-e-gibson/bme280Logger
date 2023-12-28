@@ -1,7 +1,7 @@
 # Simple bme280 logger
 An arduino nano based bme280 logger logs all data to an sd card with time form a DS1307 module in csv format.
 
-Parts:
+Parts needed:
 - Arduino nano or other arduino compatable board
 - bme280 module
 - DS1307 RTC clock
