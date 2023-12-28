@@ -1,6 +1,6 @@
 //Debug Settings used of debugging only
-#define SERIAL_DEBUG_USB                            // comment out when putting outside make the firmware a bit smaller but disables usb debug messages
-//#define SERIAL_DEBUG_BLE                            // KEEPS THIS COMMENTED IF YOU ARE NOT USING HM-10 module comment out when putting outside make the firmware a bit smaller but disables ble debug messages
+//#define SERIAL_DEBUG                              // comment out when putting outside make the firmware a bit smaller
+
 
 //Log Time
 #define MS_IN_MIN 60000                             // constant dont need to change.
@@ -17,12 +17,6 @@
 #define SD_FILE_NAME "data.csv"                     // File that the firmware will write to
 #define SD_MAX_TRYS 100                             // Max Times that a an sd card can not open a file
 
-
 //BME SETTINGS
 #define BME_ADDR 0x76                               // Address of the bme sensor 
 #define SEALEVELPRESSURE_HPA (1013.25)              // Used for Alt calculation provided by adafruit bme280 example
-
-
-//HM-10 SETTINGS
-#define HM10_RX_PIN 0
-#define HM10_TX_PIN 1
