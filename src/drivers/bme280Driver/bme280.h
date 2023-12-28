@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Adafruit_BME280.h>
 #include <settings.h>
-#include <helpers.h>
+#include "../src/helpers/helpers.h"
 #include <drivers/SerialDriver/SerialDriver.h>
 
 class bme280

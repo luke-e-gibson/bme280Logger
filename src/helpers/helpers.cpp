@@ -1,4 +1,6 @@
 #include "helpers.h"
+#include <Arduino.h>
+#include <settings.h>
 
 void HLT(void)
 {
