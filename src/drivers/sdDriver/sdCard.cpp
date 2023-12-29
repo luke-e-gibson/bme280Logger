@@ -1,6 +1,6 @@
 #include "sdCard.h"
 
-sdCard::sdCard()
+sdCard::sdCard(String csvFormat = "Temp,Pres,Hum,Alt,Time")
 {
     PrintCharln("Init Sd card");
  
@@ -19,7 +19,7 @@ sdCard::sdCard()
         File file = SD.open(SD_FILE_NAME, FILE_WRITE);
         if(file.availableForWrite())
         {
-        file.println("Temp,Pres,Hum,Alt,Time");
+        file.println(csvFormat);
         }
         file.close();
         return;
