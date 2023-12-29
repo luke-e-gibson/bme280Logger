@@ -15,16 +15,19 @@ void setup()
   while(1){
     bme.Update();
     time.Update();
- 
 
-    sd.sdLog(bme.readDataTemp(), bme.readDataPres(), bme.readDataHum(),
-        bme.readDataAlt(), time.getYear(), time.getMonth(), time.getDay(), time.getHours(), time.getMinutes(), time.getSeconds());
+    String timeFormat = String(time.getYear()) + "-" + String(time.getMonth()) + "-" + String(time.getDay()) + " " + String(time.getHours()) + "-" + String(time.getMinutes()) + "-" + String(time.getSeconds()) + "";
+    String weatherFromat = String(bme.readDataTemp()) + ","+ String(bme.readDataPres()) + "," + String(bme.readDataHum()) + "," + String(bme.readDataAlt()); 
+    String toLog = weatherFromat + "," + timeFormat;
+    Serial.println(toLog);
+    sd.sdLog(toLog);
 
 
     #ifdef SERIAL_DEBUG_USB
       bme.DebugPrint();
       time.DebugPrint();
     #endif
+    delay(MS_TILE_NEXT_LOG);
   }    
     
 }
